@@ -1,0 +1,43 @@
+{
+    "result":[
+    {
+        "deviceId": 117,
+        "groupId": 1,
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 10:00:00"
+    },
+    {
+        "deviceId": 117,
+        "groupId": 1,
+        "channelNo": 11,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 10:00:00"
+    },
+    {
+        "deviceId": 117,
+        "groupId": 2,
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 10:00:00"
+    },
+    {
+        "deviceId": 117,
+        "groupId": 2,
+        "channelNo": 11,
+        "current": 200,
+        "activePowerQty": 300,
+        "regDate": "2020-11-11 10:00:00"
+    },
+    {
+        "deviceId": 117,
+        "groupId": 3,
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 10:00:00"
+    }]
+}
