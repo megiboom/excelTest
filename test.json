@@ -1,40 +1,189 @@
 {
     "result":[
-    {
+    {   "moduleId": 100,
         "deviceId": 117,
         "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 06:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 07:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 08:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 09:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
         "channelNo": 10,
         "current": 100,
         "activePowerQty": 200,
         "regDate": "2020-11-11 10:00:00"
     },
     {
+        "moduleId": 100,
         "deviceId": 117,
         "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 11:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 12:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 13:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 14:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 15:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 16:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 17:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 18:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 19:00:00"
+    },
+    {
+        "moduleId": 100,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
+        "channelNo": 10,
+        "current": 100,
+        "activePowerQty": 200,
+        "regDate": "2020-11-11 20:00:00"
+    },
+    {
+        "moduleId": 110,
+        "deviceId": 117,
+        "groupId": 1,
+        "groupName": "test1",
         "channelNo": 11,
         "current": 100,
         "activePowerQty": 200,
         "regDate": "2020-11-11 10:00:00"
     },
     {
+        "moduleId": 200,
         "deviceId": 117,
         "groupId": 2,
+        "groupName": "test2",
         "channelNo": 10,
         "current": 100,
         "activePowerQty": 200,
         "regDate": "2020-11-11 10:00:00"
     },
     {
+        "moduleId": 210,
         "deviceId": 117,
         "groupId": 2,
+        "groupName": "test2",
         "channelNo": 11,
         "current": 200,
         "activePowerQty": 300,
         "regDate": "2020-11-11 10:00:00"
     },
     {
+        "moduleId": 300,
         "deviceId": 117,
         "groupId": 3,
+        "groupName": "test3",
         "channelNo": 10,
         "current": 100,
         "activePowerQty": 200,
