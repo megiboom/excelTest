@@ -26,10 +26,10 @@ function makeExcel(data){
         var cellNum = 2;
         var groupLength = data.length;
 
-        for(var j =0; j<groupLength; j++){
-            
+//        for(var j =0; j<groupLength; j++){
+        data.forEach((v_group,j)=>{
             var moduleLength = 10;
-            var moduleLength = data[j].moduleList.length;
+            var moduleLength = v_group.moduleList.length;
 
             /* 대분류 시작 */
             //시작행, 시작열, 끝행, 끝열
@@ -45,17 +45,18 @@ function makeExcel(data){
                 type:'pattern',
                 pattern:'solid',
                 fgColor:{argb:randomColor}
-                //fgColor:{argb:'CCFFEE'}
             }
             worksheet.getCell(rowNum,cellNum).border = {top: {style:'medium'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
 
             var row = worksheet.getRow(rowNum);        
-            row.getCell(cellNum).value='154kV S/S (154kV)'+j  //대분류 명명
+            //row.getCell(cellNum).value='154kV S/S (154kV)'+j  //대분류 명명
+            row.getCell(cellNum).value=v_group.groupName;  //대분류 명명
             row.getCell(cellNum).font={bold:true}
             /* 대분류 끝 */
 
             /* 중분류 시작 */
-            for(var i=0; i<moduleLength;i++){
+            //for(var i=0; i<moduleLength;i++){
+            v_group.moduleList.forEach((v_module,i)=>{
 
                 worksheet.mergeCells(rowNum+1, cellNum+3*i, rowNum+1, (cellNum+3*i)+2);
                 worksheet.getCell(rowNum+1,cellNum+3*i).alignment = {
@@ -70,7 +71,8 @@ function makeExcel(data){
                 worksheet.getCell(rowNum+1,cellNum+3*i).border = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
             
                 row = worksheet.getRow(rowNum+1);
-                row.getCell(cellNum+3*i).value='(1)154kV GIS MAIN반(☞280,000)'
+                //row.getCell(cellNum+3*i).value='(1)154kV GIS MAIN반(☞280,000)'
+                row.getCell(cellNum+3*i).value=v_module.moduleName;
                 row.getCell(cellNum+3*i).font={bold:true}
 
                 /* 소분류 시작 */
@@ -134,25 +136,25 @@ function makeExcel(data){
 
 
                 var rows = worksheet.getRows(rowNum+3,rowNum+22);
-            
-                rows.forEach((value) => {
-                    value.getCell(cellNum+3*i).value = 100000+j; //전류
+                rows.forEach((value,index) => {
+                    value.getCell(cellNum+3*i).value = v_module.data[index].current //전류
                     value.getCell(cellNum+3*i).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
                     value.getCell(cellNum+3*i).numFmt='#,##'         
                     //지침
                     value.getCell(cellNum+3*i+1).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
 
-                    value.getCell(cellNum+3*i+2).value = 100000+i; //전력량
+                    value.getCell(cellNum+3*i+2).value = v_module.data[index].activePowerQty; //전력량
                     value.getCell(cellNum+3*i+2).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'thin'}};
                     value.getCell(cellNum+3*i+2).numFmt='#,##.0'
                     value.commit();
                 })
-            }
+            //}
+            })
             row.commit();
             /* 중분류 끝 */
             cellNum=cellNum+(3*moduleLength);
-        }
-
+        //}
+        })
         return "complete";
         //return workbook.xlsx.writeFile('new.xlsx');
     }).then(()=>{

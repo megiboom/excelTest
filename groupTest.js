@@ -1,9 +1,9 @@
 var json = require('./test.json')
 
 function groupBy(arr){
-    const result = arr.result.reduce((r, { moduleId: moduleId,groupId:groupId,groupName:groupName, ...object }) => {
+    const result = arr.result.reduce((r, { moduleId: moduleId,moduleName:moduleName,groupId:groupId,groupName:groupName, ...object }) => {
         var temp = r.find(o => o.moduleId === moduleId);
-        if (!temp) r.push(temp = { moduleId,groupId,groupName, data: [] });
+        if (!temp) r.push(temp = { moduleId,moduleName,groupId,groupName, data: [] });
         temp.data.push(object);
         return r;
     }, []);
@@ -17,10 +17,8 @@ function groupBy(arr){
 
     return result1;
 }
-
-const gArr = groupBy(json);
-//console.log(gArr.length);
-console.log(gArr[0].moduleList.length);
-//console.log(JSON.stringify(gArr));
+//const gArr = groupBy(json);
+//console.log(gArr[0].moduleList[0].data);
+//console.log(JSON.stringify(gArr[0]));
 
 module.exports.groupBy=groupBy;
