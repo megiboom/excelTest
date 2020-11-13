@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "exceljs": "^4.2.0",
-    "json-groupby": "^1.1.0"
+    "json-groupby": "^1.1.0",
+    "moment": "^2.29.1"
   }
 }
