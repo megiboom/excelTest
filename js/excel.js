@@ -7,7 +7,7 @@ var path = require('path');
 var scriptName = path.basename(__filename);
 
 //const dir = "C:/Users/Public/전력/"
-const dir = "./log"
+const dir = "../log"
 
 var workbook = new Excel.Workbook();
 
@@ -28,7 +28,7 @@ async function makeExcel(data){
 	var msg = "makeExcel Start"
     await logs.writeLogs(msg,scriptName);
 
-    await workbook.xlsx.readFile('template.xlsx')
+    await workbook.xlsx.readFile('../template/template.xlsx')
     .then(function() {
 	    msg = "readFile success(template.xlsx)"
         logs.writeLogs(msg,scriptName);
