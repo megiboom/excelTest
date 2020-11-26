@@ -112,7 +112,7 @@ async function makeExcel(data){
                 row = worksheet.getRow(rowNum+28);
                 var colNum = numToSSColumn(cellNum+3*i+2)
                 row.getCell(cellNum+3*i+2).value={ formula: "SUM("+colNum+(rowNum+3)+","+colNum+(rowNum+27)+")"}
-                row.getCell(cellNum+3*i+2).numFmt = '#,##.0';
+                row.getCell(cellNum+3*i+2).numFmt = '#,##0.0';
                 row.getCell(cellNum+3*i+2).font={bold:true,color: { argb: 'FFFF0000' }}
                 row.getCell(cellNum+3*i).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
                 row.getCell(cellNum+3*i+1).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
@@ -121,7 +121,7 @@ async function makeExcel(data){
                 row = worksheet.getRow(rowNum+29);
                 var colNum = numToSSColumn(cellNum+3*i+2)
                 row.getCell(cellNum+3*i+2).value={ formula: "Average("+colNum+(rowNum+3)+","+colNum+(rowNum+27)+")"}
-                row.getCell(cellNum+3*i+2).numFmt = '#,##.0';
+                row.getCell(cellNum+3*i+2).numFmt = '#,##0.0';
                 row.getCell(cellNum+3*i+2).font={bold:true,color: { argb: 'FF800080' }}
                 row.getCell(cellNum+3*i).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
                 row.getCell(cellNum+3*i+1).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
@@ -130,7 +130,7 @@ async function makeExcel(data){
                 row = worksheet.getRow(rowNum+30);
                 var colNum = numToSSColumn(cellNum+3*i+2)
                 row.getCell(cellNum+3*i+2).value={ formula: "MAX("+colNum+(rowNum+3)+","+colNum+(rowNum+27)+")"}
-                row.getCell(cellNum+3*i+2).numFmt = '#,##.0';
+                row.getCell(cellNum+3*i+2).numFmt = '#,##0.0';
                 row.getCell(cellNum+3*i+2).font={bold:true,color: { argb: 'FF0000FF' }}
                 row.getCell(cellNum+3*i).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
                 row.getCell(cellNum+3*i+1).border = {top: {style:'thin'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
@@ -148,13 +148,13 @@ async function makeExcel(data){
                 rows.forEach((value,index) => {
                     value.getCell(cellNum+3*i).value = v_module.data[index].current //전류
                     value.getCell(cellNum+3*i).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
-                    value.getCell(cellNum+3*i).numFmt='#,##'         
+                    value.getCell(cellNum+3*i).numFmt='#,##0'         
                     //지침
                     value.getCell(cellNum+3*i+1).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'hair'}};
 
                     value.getCell(cellNum+3*i+2).value = v_module.data[index].activePowerQty; //전력량
                     value.getCell(cellNum+3*i+2).border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'thin'}};
-                    value.getCell(cellNum+3*i+2).numFmt='#,##.0'
+                    value.getCell(cellNum+3*i+2).numFmt='#,##0.0'
                     value.commit();
                 })
             })
@@ -168,7 +168,7 @@ async function makeExcel(data){
 
         return "complete";
     }).then(()=>{
-        const fileName = moment().format("YYYYMMDD")+"일자 전력데이터"
+        const fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터"
 	    try{
 	    	fs.mkdirSync(dir);
 	        msg = "make dir : "+dir
