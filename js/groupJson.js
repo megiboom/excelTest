@@ -19,9 +19,10 @@ function groupBy(arr){
         temp.moduleList.push(object);
         return r;
     },[])
-
+    
 	var msg = "groupBy Complete : "+result1.length
     logs.writeLogs(msg,scriptName);
     return result1;
 }
+
 module.exports.groupBy=groupBy;
