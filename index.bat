@@ -1,2 +1,1 @@
-cd js
-node index.js
+node ./js/index.js

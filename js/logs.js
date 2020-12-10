@@ -1,7 +1,10 @@
 const moment = require('moment');
 const fs = require('fs');
+const path = require('path');
 
-const dir = '../log';
+//const dir = '../log';
+
+const dir = path.join(__dirname,'..','log');
 const fileName = '/excelLog.log';
 
 const writeLogs=async(msg, fileNm,cd)=> {

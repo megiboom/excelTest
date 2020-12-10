@@ -12,6 +12,7 @@ async function main(){
     
     const data = await getData.getData();
     const jsonData = await makeGroup.groupBy(data);
+    await logs.writeLogs(JSON.stringify(jsonData),scriptName);
     await makeExcel.makeExcel(jsonData)
     msg = "Main End"
     await logs.writeLogs(msg,scriptName,-1);
