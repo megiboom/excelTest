@@ -2,7 +2,7 @@ var path = require('path');
 const logs = require('./logs');
 var scriptName = path.basename(__filename);
 
-function groupBy(arr){
+function groupByOld(arr){
 	var msg = "groupBy Start"
     logs.writeLogs(msg,scriptName);
 
@@ -32,4 +32,50 @@ function groupBy(arr){
     return result2;
 }
 
-module.exports.groupBy=groupBy;
+function groupByNew(arr){
+	var msg = "groupBy Start"
+    logs.writeLogs(msg,scriptName);
+
+    const groupByModule = arr.reduce((r, { buildCd:buildCd,buildName:buildName,groupCd:groupCd,groupName:groupName,moduleId: moduleId,moduleName:moduleName,loadQty:loadQty,oldYn:oldYn, ...object }) => {
+        var temp = r.find(o => o.moduleId === moduleId);
+        if (!temp) r.push(temp = { buildCd,buildName,groupCd,groupName,moduleId,moduleName,loadQty,oldYn, data: [] });
+        temp.data.push(object);
+        return r;
+    }, []);
+    
+    const groupByGroup = groupByModule.reduce((r,{buildCd:buildCd,buildName:buildName,groupCd:groupCd,groupName:groupName,oldYn:oldYn, ...object})=>{
+        var temp = r.find(o => o.groupCd === groupCd);
+        if (!temp) r.push(temp = { buildCd,buildName,groupCd,groupName,oldYn, moduleList: [] });
+        temp.moduleList.push(object);
+        return r;
+    },[])
+/*
+    const groupBySector = groupByGroup.reduce((r,{floorCd:floorCd,floorName:floorName,sectorCd:sectorCd,sectorName:sectorName,oldYn:oldYn, ...object})=>{
+        var temp = r.find(o => o.sectorCd === sectorCd);
+        if (!temp) r.push(temp = { floorCd,floorName,sectorCd,sectorName,oldYn, groupList: [] });
+        temp.groupList.push(object);
+        return r;
+    },[])
+
+    const groupByFloor = groupBySector.reduce((r,{floorCd:floorCd,floorName:floorName,oldYn:oldYn, ...object})=>{
+        var temp = r.find(o => o.floorCd === floorCd);
+        if (!temp) r.push(temp = { floorCd,floorName,oldYn, sectorList: [] });
+        temp.sectorList.push(object);
+        return r;
+    },[])
+*/
+
+    const groupByBuild = groupByGroup.reduce((r,{buildCd:buildCd,buildName:buildName,oldYn:oldYn, ...object})=>{
+        var temp = r.find(o => o.buildCd === buildCd);
+        if (!temp) r.push(temp = { buildCd,buildName,oldYn, groupList: [] });
+        temp.groupList.push(object);
+        return r;
+    },[])
+	var msg = "groupBy Complete : "+groupByBuild.length
+    logs.writeLogs(msg,scriptName);
+    return groupByBuild;
+}
+
+
+module.exports.groupByOld=groupByOld;
+module.exports.groupByNew=groupByNew;
