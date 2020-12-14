@@ -12,6 +12,7 @@ const dir =  path.join(__dirname,'..','log')
 const templateDir = path.join(__dirname,'..','template','template.xlsx')
 const fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터.xlsx"
 
+
 var workbook = new Excel.Workbook();
 
 var color=['FFC6E0B4','FFFFFF99','FFFFE699','FFC6E0B4','FFCCFFCC','FFBDD7EE']
@@ -45,6 +46,9 @@ async function makeExcelOld(data){
             var rowNum = 3;
             var cellNum = 2;
             if(v_oldYn.oldYn == 'N') rowNum == 39;
+
+            
+
             v_oldYn.groupList.forEach((v_group,j)=>{
                 var moduleLength = v_group.moduleList.length;
 
@@ -227,7 +231,8 @@ async function makeExcelOld(data){
 	    }catch(e){
 	    	if ( e.code != 'EEXIST' ) throw e; // 존재할경우 패스처리함.
         }
-        const excelPath = path.join(dir,fileName)
+        
+        const excelPath = path.join(dir,fileName);
         workbook.xlsx.writeFile(excelPath);
         //workbook.xlsx.writeFile(dir+fileName+'.xlsx');
 
@@ -241,11 +246,11 @@ async function makeExcelOld(data){
         console.error(e);
         return e;
     })
-    return "complete"
+    return fileName;
 }
 
 
-async function makeExcelNew(data){
+async function makeExcelNew(data,fileName){
 	var msg = "makeExcel Start"
     await logs.writeLogs(msg,scriptName);
 
