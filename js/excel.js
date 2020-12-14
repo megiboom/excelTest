@@ -47,8 +47,6 @@ async function makeExcelOld(data){
             var cellNum = 2;
             if(v_oldYn.oldYn == 'N') rowNum == 39;
 
-            
-
             v_oldYn.groupList.forEach((v_group,j)=>{
                 var moduleLength = v_group.moduleList.length;
 
@@ -266,6 +264,7 @@ async function makeExcelNew(data,fileName){
         data.forEach((v_oldYn,l) => {
             var rowNum = 3+(36*(l+1));
             var cellNum = 2;
+
             makeExcelTemp(worksheet,rowNum,v_oldYn.buildName);
             v_oldYn.groupList.forEach((v_group,j)=>{
                 var moduleLength = v_group.moduleList.length;
@@ -474,6 +473,70 @@ async function makeExcelTemp(worksheet,rowNum,buildNm){
         vertical: 'middle', 
         horizontal: 'left'
     }
+
+    const rowsForTempHeight = worksheet.getRows(rowNum+1,2);
+    rowsForTempHeight.forEach((row,index)=>{
+        row.height=25.5;
+    })
+    worksheet.mergeCells(rowNum, 1, rowNum+2,1);
+    worksheet.getCell(rowNum,1).fill = {
+        type:'pattern',
+        pattern:'solid',
+        fgColor:{argb:'FFCCFFCC'}
+    }
+    worksheet.getCell(rowNum,1).border = {
+        diagonal: {up: false, down: true, style:'thin', color: {argb:'FF000000'}},
+        top: {style:'medium'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}
+    };
+    worksheet.getCell(rowNum,1).alignment = {
+        vertical: 'middle', 
+        horizontal: 'left',
+        wrapText: true
+    }
+    worksheet.getCell(rowNum,1).value="       항목\r\n\r\n시간";
+    worksheet.getCell(rowNum,1).font={bold:true,size:12}
+    
+    const rowsForTemp = worksheet.getRows(rowNum+3,29);
+    rowsForTemp.forEach((row,index)=>{
+        let txt = ''
+        let color = 'FF000000';
+        let border = {top: {style:'hair'},left: {style:'hair'},bottom: {style:'hair'},right: {style:'thin'}};
+        const rowCell = row.getCell(1);
+        if(index < 25){
+            txt = ((index+6)%24==0) ? '24시':(index+6)%24+'시'
+            if(index==0){border.top.style='thin'}
+            if(index==19){border.top.style='thin'}
+        }
+        if(index == 25) {
+            txt = '합      계'
+            color = 'FFFF0000'
+            border = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
+        }
+        if(index == 26) {
+            txt = '평균전력'
+            color = 'FF800080'
+            border = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
+        }
+        if(index == 27) {
+            txt = '최대전력'
+            color = 'FF0000FF'
+            border = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'thin'},right: {style:'thin'}};
+        }
+        if(index == 28) {
+            txt = '부 하 량'
+            color = 'FFFF00FF'
+            border = {top: {style:'thin'},left: {style:'thin'},bottom: {style:'medium'},right: {style:'thin'}};
+        }
+        rowCell.fill = {
+            type:'pattern',
+            pattern:'solid',
+            fgColor:{argb:'FFCCFFCC'}
+        }
+        rowCell.font={bold:true,size:12,color:{argb:color}}
+        rowCell.alignment = {vertical: 'middle', horizontal: 'center'}
+        rowCell.border = border;
+        rowCell.value = txt;
+    })
 }
 module.exports.makeExcelOld = makeExcelOld;
 module.exports.makeExcelNew = makeExcelNew;
