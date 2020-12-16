@@ -8,7 +8,7 @@ var scriptName = path.basename(__filename);
 
 //const dir = "C:/Users/Public/전력/"
 //const dir = "../log"
-const dir =  path.join(__dirname,'..','log')
+//const dir =  path.join(__dirname,'..','log')
 const templateDir = path.join(__dirname,'..','template','template.xlsx')
 const fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터.xlsx"
 
@@ -28,7 +28,7 @@ function numToSSColumn(num){
   return s || undefined;
 }
 
-async function makeExcelOld(data){
+async function makeExcelOld(data,dir){
 	var msg = "makeExcel Start"
     await logs.writeLogs(msg,scriptName);
 
@@ -248,7 +248,7 @@ async function makeExcelOld(data){
 }
 
 
-async function makeExcelNew(data,fileName){
+async function makeExcelNew(data,fileName,dir){
 	var msg = "makeExcel Start"
     await logs.writeLogs(msg,scriptName);
 
@@ -454,7 +454,7 @@ async function makeExcelNew(data,fileName){
 
         msg = "makeExcel Complete : "+excelPath;
         logs.writeLogs(msg,scriptName);
-
+        console.log(msg);
         return excelPath;
     }).catch((e)=>{
         msg = "makeExcel Fail : "+e;

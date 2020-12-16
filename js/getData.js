@@ -4,13 +4,13 @@ const logs = require('./logs');
 var path = require('path');
 var scriptName = path.basename(__filename);
 
-async function getData(oldYn){
+async function getData(url){
 	var msg = "getData"
     await logs.writeLogs(msg,scriptName);
     try{
-        let url = ''
+        /*let url = ''
         if(oldYn) url = 'http://localhost:8070/api/power/excel/hourly/'+oldYn;
-        else if(!oldYn) url = 'http://localhost:8070/api/power/excel/hourly';
+        else if(!oldYn) url = 'http://localhost:8070/api/power/excel/hourly';*/
         var rtn = await axios.get(url);
         if(rtn.data==null || rtn.data=="" || rtn.data.resultCd!="0000") {
 	        msg = ("getData Fail: ",rtn.data);

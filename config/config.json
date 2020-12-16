@@ -1,0 +1,5 @@
+{
+    "getDataUrlOld" : "http://localhost:8070/api/power/excel/hourly/Y",
+    "getDataUrlNew" : "http://localhost:8070/api/power/excel/hourly/N",
+    "excelDownloadDir" : "C:/Users/Public/전력"
+}
