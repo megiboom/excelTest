@@ -7,7 +7,7 @@ function groupByOld(arr){
     logs.writeLogs(msg,scriptName);
 
     const result = arr.reduce((r, { moduleId: moduleId,moduleName:moduleName,groupCd:groupCd,groupName:groupName,loadQty:loadQty,oldYn:oldYn, ...object }) => {
-        var temp = r.find(o => o.moduleId === moduleId);
+        var temp = r.find(o => o.moduleId === moduleId && o.groupCd === groupCd);
         if (!temp) r.push(temp = { moduleId,moduleName,groupCd,groupName,loadQty,oldYn, data: [] });
         temp.data.push(object);
         return r;
