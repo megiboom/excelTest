@@ -10,8 +10,7 @@ var scriptName = path.basename(__filename);
 //const dir = "../log"
 //const dir =  path.join(__dirname,'..','log')
 const templateDir = path.join(__dirname,'..','template','template.xlsx')
-const fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터.xlsx"
-
+//let fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터.xlsx"
 
 var workbook = new Excel.Workbook();
 
@@ -28,8 +27,8 @@ function numToSSColumn(num){
   return s || undefined;
 }
 
-async function makeExcelOld(data,dir){
-	var msg = "makeExcel Start"
+async function makeExcelOld(data,fileName,dir){
+	var msg = "makeExcelOld Start"
     await logs.writeLogs(msg,scriptName);
 
     //await workbook.xlsx.readFile(templateDir)
@@ -216,7 +215,7 @@ async function makeExcelOld(data,dir){
 
         })
         
-	    msg = "makeExcel Complete(setData)"
+	    msg = "makeExcelOld Complete(setData)"
         logs.writeLogs(msg,scriptName);
 
         return "complete";
@@ -229,7 +228,7 @@ async function makeExcelOld(data,dir){
 	    }catch(e){
 	    	if ( e.code != 'EEXIST' ) throw e; // 존재할경우 패스처리함.
         }
-        
+
         const excelPath = path.join(dir,fileName);
         workbook.xlsx.writeFile(excelPath);
         //workbook.xlsx.writeFile(dir+fileName+'.xlsx');
@@ -249,13 +248,15 @@ async function makeExcelOld(data,dir){
 
 
 async function makeExcelNew(data,fileName,dir){
-	var msg = "makeExcel Start"
+	var msg = "makeExcelNew Start"
     await logs.writeLogs(msg,scriptName);
 
-    //await workbook.xlsx.readFile('../template/template.xlsx')
+    msg = "readFile "+dir+fileName;
+    await logs.writeLogs(msg,scriptName);
+
     await workbook.xlsx.readFile(dir+fileName)
     .then(function() {
-	    msg = "readFile success(template.xlsx)"
+	    msg = "readFile success("+fileName+")"
         logs.writeLogs(msg,scriptName);
 
         var worksheet = workbook.getWorksheet(1);
@@ -440,7 +441,6 @@ async function makeExcelNew(data,fileName,dir){
 
         return "complete";
     }).then(()=>{
-        const fileName = '/'+moment().format("YYYYMMDD")+"일자 전력데이터.xlsx"
 	    try{
 	    	fs.mkdirSync(dir);
 	        msg = "make dir : "+dir
@@ -538,5 +538,30 @@ async function makeExcelTemp(worksheet,rowNum,buildNm){
         rowCell.value = txt;
     })
 }
+
+async function getFileName(dir){
+    const fileList = fs.readdirSync(dir)
+    let fileName = moment().format("YYYYMMDD")+"일자 전력데이터.xlsx";
+
+
+    const filterQuery = (query) =>{
+        return fileList.filter((el)=>el.toLowerCase().indexOf(query.toLowerCase())>-1)
+    } 
+    let nameList = filterQuery(fileName.split('.')[0]);
+    if (nameList == null || nameList.length == 0) {return '/'+fileName};
+    let pop = nameList.pop();
+    nameList.unshift(pop)
+
+    let num = 1;
+    nameList.forEach((v,i)=>{
+        if(fileName.trim()==v.trim()){
+            fileName = moment().format("YYYYMMDD")+"일자 전력데이터("+num+").xlsx"
+            num+=1;
+        }
+    })
+    return '/'+fileName
+}
+
+module.exports.getFileName = getFileName;
 module.exports.makeExcelOld = makeExcelOld;
 module.exports.makeExcelNew = makeExcelNew;
